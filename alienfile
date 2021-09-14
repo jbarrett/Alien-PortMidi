@@ -1,0 +1,18 @@
+use alienfile;
+
+my $PORTMIDI_VERSION = '236';
+
+plugin 'Gather::IsolateDynamic';
+plugin 'PkgConfig' => (
+    pkg_name => 'portmidi',
+    atleast_version => $PORTMIDI_VERSION
+);
+
+share {
+    plugin 'Download' => (
+        url => "https://github.com/mixxxdj/portmidi/archive/refs/tags/$PORTMIDI_VERSION.tar.gz"
+    );
+    plugin 'Extract' => 'tar.gz';
+    plugin 'Build::Cmake';
+    build [ '%{configure} --enable-static', '%{make}', '%{make} install', ];
+};

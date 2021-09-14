@@ -13,6 +13,10 @@ share {
         url => "https://github.com/mixxxdj/portmidi/archive/refs/tags/$PORTMIDI_VERSION.tar.gz"
     );
     plugin 'Extract' => 'tar.gz';
-    plugin 'Build::Cmake';
-    build [ '%{configure} --enable-static', '%{make}', '%{make} install', ];
+    plugin 'Build::CMake';
+    build [
+        '%{cmake3} -G "%{cmake_generator}" -DBUILD_STATIC_LIB=ON -DCMAKE_INSTALL_PREFIX=%{.install.prefix} -S . -B build',
+        '%{cmake3} --build build',
+        '%{cmake3} --install build',
+    ];
 };

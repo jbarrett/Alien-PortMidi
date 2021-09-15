@@ -15,7 +15,7 @@ share {
     plugin 'Extract' => 'tar.gz';
     plugin 'Build::CMake';
     build [
-        '%{cmake3} -G "%{cmake_generator}" -DCMAKE_INSTALL_RPATH="\$ORIGIN" -DCMAKE_INSTALL_PREFIX=%{.install.prefix} -S . -B build',
+        '%{cmake3} -G "%{cmake_generator}" -DCMAKE_INSTALL_RPATH=\'$ORIGIN\' -DCMAKE_INSTALL_PREFIX=%{.install.prefix} -S . -B build',
         '%{cmake3} --build build',
         '%{cmake3} --install build',
     ];

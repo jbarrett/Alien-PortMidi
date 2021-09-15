@@ -18,9 +18,9 @@ share {
         [
             '%{cmake3}',
             @{ meta->prop->{plugin_build_cmake}->{args} },
-            '-DCMAKE_INSTALL_RPATH=\'$ORIGIN\'',
-            '-S .',
-            '-B build',
+            '-D', 'CMAKE_INSTALL_RPATH=\'$ORIGIN\'',
+            '-S', '.',
+            '-B', 'build',
         ],
         '%{cmake3} --build build',
         '%{cmake3} --install build'

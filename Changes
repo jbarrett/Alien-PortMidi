@@ -1,5 +1,9 @@
 Revision history for perl module Alien::PortMidi
 
+0.03 2021-09-16
+
+  - Improve Windows build - should no longer warn
+
 0.02 2021-09-15
 
   - Remove build patch
